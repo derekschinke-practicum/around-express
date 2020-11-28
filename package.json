@@ -1,0 +1,19 @@
+{
+  "name": "around-express",
+  "version": "1.0.0",
+  "description": "This project is part of the Back-end Basics for Web Developers sprint for the Web Developer course at Practicum by Yandex.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekschinke-practicum/around-express.git"
+  },
+  "author": "Derek Schinke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/derekschinke-practicum/around-express/issues"
+  },
+  "homepage": "https://github.com/derekschinke-practicum/around-express#readme"
+}
