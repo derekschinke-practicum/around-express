@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/derekschinke-practicum/around-express/issues"
   },
-  "homepage": "https://github.com/derekschinke-practicum/around-express#readme"
+  "homepage": "https://github.com/derekschinke-practicum/around-express#readme",
+  "devDependencies": {
+    "eslint": "^7.14.0"
+  }
 }
