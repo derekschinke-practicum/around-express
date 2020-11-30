@@ -4,7 +4,8 @@
   "description": "This project is part of the Back-end Basics for Web Developers sprint for the Web Developer course at Practicum by Yandex.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.6",
     "prettier": "^2.2.1"
   }
 }
