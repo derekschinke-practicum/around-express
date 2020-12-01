@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', userRouter);
 app.use('/', cardRouter);
 
-app.use((req, res) =>
+app.use('*', (req, res) =>
   res.status(404).send({ message: 'Requested resource not found' })
 );
 
