@@ -1,19 +1,12 @@
-const path = require('path');
+const User = require('../models/user');
 
-// const User = require('../models/user');
-const getFileContent = require('../helpers/getFileContent');
-
-const userDataPath = path.join(__dirname, '..', 'data', 'users.json');
-
-function getUsers(req, res) {
-  return getFileContent(userDataPath, res)
+module.exports.getUsers = (req, res) =>
+  User.find({})
     .then((users) => res.status(200).send(users))
-    .catch((err) => res.status(500).send({ message: err }));
-}
+    .catch((err) => res.status(400).send({ message: err }));
 
-function getOneUser(req, res) {
-  return getFileContent(userDataPath)
-    .then((users) => users.find((user) => user._id === req.params.id))
+module.exports.getOneUser = (req, res) =>
+  User.findById(req.params.id)
     .then((user) => {
       if (user) {
         return res.status(200).send(user);
@@ -21,10 +14,10 @@ function getOneUser(req, res) {
       return res.status(404).send({ message: 'User ID not found' });
     })
     .catch((err) => res.status(500).send({ message: err }));
-}
 
-// function createUser(req, res) {
-//   const { name, about, avatar } = req.body;
-// }
-
-module.exports = { getUsers, getOneUser };
+module.exports.createUser = (req, res) => {
+  const { name, about, avatar } = req.body;
+  User.create({ name, about, avatar })
+    .then((user) => res.status(200).send(user))
+    .catch((err) => res.status(500).send({ message: err }));
+};
