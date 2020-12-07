@@ -1,8 +1,9 @@
 const path = require('path');
 
+// const User = require('../models/user');
 const getFileContent = require('../helpers/getFileContent');
 
-const userDataPath = path.join(__dirname, '..', 'data', 'userData.json');
+const userDataPath = path.join(__dirname, '..', 'data', 'users.json');
 
 function getUsers(req, res) {
   return getFileContent(userDataPath, res)
@@ -21,5 +22,9 @@ function getOneUser(req, res) {
     })
     .catch((err) => res.status(500).send({ message: err }));
 }
+
+// function createUser(req, res) {
+//   const { name, about, avatar } = req.body;
+// }
 
 module.exports = { getUsers, getOneUser };
