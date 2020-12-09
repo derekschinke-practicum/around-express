@@ -18,3 +18,12 @@ module.exports.deleteCard = (req, res) =>
   Card.findByIdAndDelete(req.params._id)
     .then((card) => res.status(200).send(card))
     .catch((err) => handleError(err, res, 'card'));
+
+module.exports.likeCard = (req, res) =>
+  Card.findByIdAndUpdate(
+    req.params.cardId,
+    { $addToSet: { likes: req.user._id } },
+    { new: true, runValidators: true }
+  )
+    .then((card) => res.status(200).send(card))
+    .catch((err) => handleError(err, res, 'card'));
