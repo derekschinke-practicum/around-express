@@ -27,3 +27,12 @@ module.exports.updateUser = (req, res) =>
   )
     .then((user) => res.status(200).send(user))
     .catch((err) => handleError(err, res, 'user'));
+
+module.exports.updateAvatar = (req, res) =>
+  User.findByIdAndUpdate(
+    req.params.id,
+    { $set: { avatar: req.body.avatar } },
+    { new: true, runValidators: true }
+  )
+    .then((user) => res.status(200).send(user))
+    .catch((err) => handleError(err, res, 'user'));
