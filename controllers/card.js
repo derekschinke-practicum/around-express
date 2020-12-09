@@ -4,7 +4,7 @@ const handleError = require('../helpers/handleError');
 
 module.exports.getCards = (req, res) =>
   Card.find({})
-    .then((cards) => res.status(200).send(cards))
+    .then((card) => res.status(200).send(card))
     .catch((err) => handleError(err, res, 'card'));
 
 module.exports.createCard = (req, res) => {

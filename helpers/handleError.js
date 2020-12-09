@@ -1,7 +1,7 @@
 function handleError(err, res, model) {
   if (err.name === 'ValidationError') {
     return res.status(400).send({
-      message: `Bad Request: invalid user creation ${model} passed`,
+      message: `Bad Request: invalid ${model} creation data passed`,
     });
   }
   if (err.name === 'CastError') {
