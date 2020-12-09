@@ -18,3 +18,12 @@ module.exports.createUser = (req, res) => {
     .then((user) => res.status(200).send(user))
     .catch((err) => handleError(err, res, 'user'));
 };
+
+module.exports.updateUser = (req, res) =>
+  User.findByIdAndUpdate(
+    req.params.id,
+    { $set: { name: req.body.name, about: req.body.about } },
+    { new: true, runValidators: true }
+  )
+    .then((user) => res.status(200).send(user))
+    .catch((err) => handleError(err, res, 'user'));
