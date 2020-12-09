@@ -1,13 +1,32 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
 
-const userRouter = require('./routers/userRouter');
-const cardRouter = require('./routers/cardRouter');
+const userRouter = require('./routers/user');
+const cardRouter = require('./routers/card');
 
 const app = express();
 const { PORT = 3000 } = process.env;
 
+mongoose.connect('mongodb://localhost:27017/arounddb', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+  req.user = {
+    _id: '5fcdc953c018326cad76aa79',
+  };
+  next();
+});
+
 app.use('/', userRouter);
 app.use('/', cardRouter);
 
