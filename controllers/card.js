@@ -27,3 +27,12 @@ module.exports.likeCard = (req, res) =>
   )
     .then((card) => res.status(200).send(card))
     .catch((err) => handleError(err, res, 'card'));
+
+module.exports.unlikeCard = (req, res) =>
+  Card.findByIdAndUpdate(
+    req.params.cardId,
+    { $pull: { likes: req.user._id } },
+    { new: true, runValidators: true }
+  )
+    .then((card) => res.status(200).send(card))
+    .catch((err) => handleError(err, res, 'card'));
