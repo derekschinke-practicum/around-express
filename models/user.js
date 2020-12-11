@@ -25,7 +25,7 @@ const schema = new mongoose.Schema(
       },
     },
   },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 module.exports = mongoose.model('user', schema);
