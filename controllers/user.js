@@ -7,6 +7,7 @@ module.exports.getUsers = (req, res) => User.find({})
   .catch((err) => handleError(err, res, 'user'));
 
 module.exports.getUserById = (req, res) => User.findById(req.params.id)
+  .orFail(() => res.status(404).send({ message: 'Not Found: user not found' }))
   .then((user) => res.status(200).send(user))
   .catch((err) => handleError(err, res, 'user'));
 
@@ -18,7 +19,7 @@ module.exports.createUser = (req, res) => {
 };
 
 module.exports.updateUser = (req, res) => User.findByIdAndUpdate(
-  req.params.id,
+  req.user._id,
   { $set: { name: req.body.name, about: req.body.about } },
   { new: true, runValidators: true },
 )
@@ -26,7 +27,7 @@ module.exports.updateUser = (req, res) => User.findByIdAndUpdate(
   .catch((err) => handleError(err, res, 'user'));
 
 module.exports.updateAvatar = (req, res) => User.findByIdAndUpdate(
-  req.params.id,
+  req.user._id,
   { $set: { avatar: req.body.avatar } },
   { new: true, runValidators: true },
 )
