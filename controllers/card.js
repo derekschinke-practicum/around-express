@@ -23,6 +23,7 @@ module.exports.likeCard = (req, res) => Card.findByIdAndUpdate(
   { $addToSet: { likes: req.user._id } },
   { new: true, runValidators: true },
 )
+  .orFail(() => res.status(404).send({ message: 'Not Found: card not found' }))
   .then((card) => res.status(200).send(card))
   .catch((err) => handleError(err, res, 'card'));
 
@@ -31,5 +32,6 @@ module.exports.unlikeCard = (req, res) => Card.findByIdAndUpdate(
   { $pull: { likes: req.user._id } },
   { new: true, runValidators: true },
 )
+  .orFail(() => res.status(404).send({ message: 'Not Found: card not found' }))
   .then((card) => res.status(200).send(card))
   .catch((err) => handleError(err, res, 'card'));
